@@ -12,4 +12,5 @@ For both samples, metagenome and isolate.
 6. Use anvi'o to bin samples and for visualization. Metagenome will bin into species and isolate may bin into several species.
 
 Possible additional directions:
-* look at SNPs
+* look at SNPs - similar to elk workflow?
+* phylogenetic classification - [Humann2](http://huttenhower.sph.harvard.edu/humann2), [Shotmap](https://github.com/sharpton/shotmap), possibly [Kaiju](http://kaiju.binf.ku.dk/)

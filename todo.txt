@@ -1,0 +1,10 @@
+fix trimmomatic script
+run it on isolate data
+interleave isolate data
+assemble isolate data
+
+
+check on metagenome assembly
+do mapping on metagenome
+put metagenome in anvio
+also maybe do taxonomic classification with variety of tools

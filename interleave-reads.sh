@@ -3,8 +3,8 @@
 #SBATCH --job-name=interleave-reads.sh.isolate
 #SBATCH -t 2:00:00
 #SBATCH --mem=32768
-#SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/interleave-reads.sh.isolate.out
-#SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/interleave-reads.sh.isolate.err
+#SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/trimmomatic.sh.isolate.out
+#SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/trimmomatic.sh.isolate.err
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 
@@ -24,6 +24,6 @@ do
      output=${base/_R1_/}.fastq
 
      (interleave-reads.py /home/jemizzi/rotation-project/raw-data/isolate/${base}.fastq /home/jemizzi/rotation-project/raw-data/isolate/${baseR2}.fastq | \
-         gzip > /home/jemizzi/rotation-project/quality-control/isolate/trimmomatic-output/$output)
+         gzip > /home/jemizzi/rotation-project/quality-control/isolate/interleave-output-files-trimmed/$output)
 
 done

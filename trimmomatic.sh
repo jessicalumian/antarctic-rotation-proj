@@ -15,12 +15,12 @@ wget https://anonscm.debian.org/cgit/debian-med/trimmomatic.git/plain/adapters/T
 
 for filename in *_R1_*.fastq
 do
-     base=$(basename $filename .fastq.gz)
+     base=$(basename $filename .fastq)
      echo $base
      baseR2=${base/_R1_/_R2_}
      echo $baseR2
 
-     java -jar $TRIM/trimmomatic PE -phred33 \
+     java -jar /share/apps/Trimmomatic-0.33/trimmomatic-0.33.jar PE -phred33 \
      # input
      /home/jemizzi/rotation-project/raw-data/isolate/${base}.fastq \
      /home/jemizzi/rotation-project/raw-data/isolate/${baseR2}.fastq \

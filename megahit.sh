@@ -8,6 +8,6 @@
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 
-module load megahit
+module load megahit/1.0.6-hotfix1
 
 megahit --12 /home/jemizzi/rotation-project/raw-data/metagenomic/paired-qc-filtered-megan/10.4_ABC_4.cat.ereps.afu.fastq -o /home/jemizzi/rotation-project/assembly/metagenome/megahit-assembly

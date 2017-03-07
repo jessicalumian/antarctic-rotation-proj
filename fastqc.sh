@@ -8,6 +8,6 @@
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 
-module load fastqc
+module load fastqc/0.11.5
 
 fastqc /home/jemizzi/rotation-project/raw-data/metagenomic/*

@@ -8,12 +8,12 @@
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 
-module load trimmomatic
+module load trimmomatic/0.33
 
 # Get Illumina Adapters
 wget https://anonscm.debian.org/cgit/debian-med/trimmomatic.git/plain/adapters/TruSeq3-PE-2.fa
 
-for filename in *_R1_*.fastq
+for filename in /home/jemizzi/rotation-project/raw-data/isolate/unpaired-qc-raw/*_R1_*.fastq
 do
      base=$(basename $filename .fastq)
      echo $base
@@ -22,12 +22,12 @@ do
 
      java -jar /share/apps/Trimmomatic-0.33/trimmomatic-0.33.jar PE -phred33 \
      # input
-     /home/jemizzi/rotation-project/raw-data/isolate/${base}.fastq \
-     /home/jemizzi/rotation-project/raw-data/isolate/${baseR2}.fastq \
+     /home/jemizzi/rotation-project/raw-data/isolate/unpaired-qc-raw/${base}.fastq \
+     /home/jemizzi/rotation-project/raw-data/isolate/unpaired-qc-raw/${baseR2}.fastq \
      # output
-     /home/jemizzi/rotation-project/quality-control/isolate/trimmomatic-output/${base}.fastq \
+     /home/jemizzi/rotation-project/quality-control/isolate/trimmomatic-output/${base}.trim.fastq \
      /home/jemizzi/rotation-project/quality-control/isolate/trimmomatic-output/s1_se \
-     /home/jemizzi/rotation-project/quality-control/isolate/trimmomatic-output/${baseR2}.fastq \
+     /home/jemizzi/rotation-project/quality-control/isolate/trimmomatic-output/${baseR2}.trim.fastq \
      /home/jemizzi/rotation-project/quality-control/isolate/trimmomatic-output/s2_se \
      # parameters - based on suggestions from user manual
      ILLUMINACLIP:TruSeq3-PE-2.fa:2:30:10 \

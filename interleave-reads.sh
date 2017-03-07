@@ -8,7 +8,7 @@
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 
-module load python khmer
+module load python/2.7.6 khmer/2.0
 
 for filename in /home/jemizzi/rotation-project/raw-data/isolate/*_R1_*.fastq
 do

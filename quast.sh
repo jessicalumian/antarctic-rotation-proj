@@ -10,4 +10,4 @@
 
 module load python/2.7.6 quast/4.3
 
-python quast /home/jemizzi/rotation-project/assembly/metagenome/megahit-assembly/final.contigs.fa
+quast.py -o /home/jemizzi/rotation-project/quality-control/metagenome/quast-output /home/jemizzi/rotation-project/assembly/metagenome/megahit-assembly/final.contigs.fa

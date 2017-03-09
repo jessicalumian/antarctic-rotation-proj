@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #
 #SBATCH --job-name=interleave-reads.sh.isolate
-#SBATCH -t 2:00:00
+#SBATCH -t 10:00:00
 #SBATCH --mem=32768
 #SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/interleave-reads.sh.isolate.out
 #SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/interleave-reads.sh.isolate.err

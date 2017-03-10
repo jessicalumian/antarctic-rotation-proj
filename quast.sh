@@ -8,6 +8,7 @@
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 
-module load python/2.7.6 quast/4.3
+module load quast/4.3
+# default runs on pythong 2.7
 
 quast.py -o /home/jemizzi/rotation-project/quality-control/metagenome/quast-output /home/jemizzi/rotation-project/assembly/metagenome/megahit-assembly/final.contigs.fa

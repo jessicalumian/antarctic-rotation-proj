@@ -8,15 +8,15 @@
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 
-module load bio/1.0 anvio/2.0.2
+module load bio/1.0 anvio/2.0.2 prodigal/2.6.3 centrifuge/1.0.3-beta
 
 # Assembly fasta and BAM file in anvio directory
 
 # Generate anvi'o contigs database
-anvi-gen-contigs-database -f /home/jemizzi/rotation-project/visualization-anvio/metagenome/contigs-fixed.fa -o contigs.db
+anvi-gen-contigs-database -f /home/jemizzi/rotation-project/visualization-anvio/metagenome/contigs-fixed.fa -o /home/jemizzi/rotation-project/visualization-anvio/metagenome/contigs.db
 
 # Generate HMMS of database
-anvi-run-hmms -c contigs.db
+anvi-run-hmms -c /home/jemizzi/rotation-project/visualization-anvio/metagenome/contigs.db
 
 # Annotate Taxonomy
 # need to have centrifuge downloaded onto peloton
@@ -29,7 +29,7 @@ anvi-run-hmms -c contigs.db
 # anvi-init-bam SAMPLE-01-RAW.bam -o SAMPLE-01.bam
 
 # Creating anvi-profile - incorporates stats from BAM file
-anvi-profile -i metagenome-mapped-fixed-contigs.sorted.bam -c contigs.db
+#anvi-profile -i /home/jemizzi/rotation-project/visualization-anvio/metagenome/metagenome-mapped-fixed-contigs.sorted.bam -c /home/jemizzi/rotation-project/visualization-anvio/metagenome/contigs.db
 
 # Merge anvio profiles - necessary if working with multiple samples and bam files, not this situation but kept here for reference
 

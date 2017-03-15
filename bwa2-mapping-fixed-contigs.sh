@@ -20,7 +20,7 @@ bwa mem /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output-fixe
 samtools faidx /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output-fixed-contigs-anvio/contigs-fixed.fa
 
 # convert sam to bam
-samtools import /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output-fixed-contigs-anvio/contigs.fa.fai /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output-fixed-contigs-anvio/isolate-mapped-fixed-contigs.sam /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output/isolate-mapped-fixed-contigs.bam
+samtools import /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output-fixed-contigs-anvio/contigs-fixed.fa.fai /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output-fixed-contigs-anvio/isolate-mapped-fixed-contigs.sam /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output-fixed-contigs-anvio/isolate-mapped-fixed-contigs.bam
 
 # sort the bam file
 samtools sort /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output-fixed-contigs-anvio/isolate-mapped-fixed-contigs.bam > /home/jemizzi/rotation-project/mapping/isolate/bwa2-samtools-output-fixed-contigs-anvio/isolate-mapped-fixed-contigs.sorted.bam

@@ -10,4 +10,4 @@
 
 module load kaiju/1
 
-kaiju -t /home/jemizzi/rotation-project/databases/kaiju-database/nodes.dmp /home/jemizzi/rotation-project/databases/kaiju-database/kaiju_db_nr_euk.fmi -i /home/jemizzi/rotation-project/assembly/isolate/megahit-assembly/final.contigs.fa
+kaiju -t /home/jemizzi/rotation-project/databases/kaiju-database/nodes.dmp -f /home/jemizzi/rotation-project/databases/kaiju-database/kaiju_db_nr_euk.fmi -i /home/jemizzi/rotation-project/assembly/isolate/megahit-assembly/final.contigs.fa

@@ -8,7 +8,7 @@
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 
-module load python3/3.6.0 bio/1.0 anvio/2.2.2 prodigal/2.6.3 centrifuge/1.0.3-beta
+module load bio/1.0 prodigal/2.6.3 centrifuge/1.0.3-beta python3/3.6.0
 
 # Assembly fasta and BAM file in anvio directory
 

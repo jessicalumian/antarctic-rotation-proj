@@ -2,7 +2,7 @@
 #
 #SBATCH --job-name=kaiju-metagenome.sh.metagenome
 #SBATCH -t 10:00:00
-#SBATCH --mem=32768
+#SBATCH --mem=57344
 #SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/kaiju-metagenome.sh.metagenome.out
 #SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/kaiju-metagenome.sh.metagenome.err
 #SBATCH --mail-user=jemizzi@ucdavis.edu

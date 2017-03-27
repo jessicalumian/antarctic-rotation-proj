@@ -1,10 +1,10 @@
 #!/bin/bash -l
 #
-#SBATCH --job-name=bwa2-mapping.sh.isolate
+#SBATCH --job-name=bwa2-mapping-isolate.sh.isolate
 #SBATCH -t 10:00:00
 #SBATCH --mem=32768
-#SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/bwa2-mapping.sh.isolate.out
-#SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/bwa2-mapping.sh.isolate.err
+#SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/bwa2-mapping-isolate.sh.isolate.out
+#SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/bwa2-mapping-isolate.sh.isolate.err
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 

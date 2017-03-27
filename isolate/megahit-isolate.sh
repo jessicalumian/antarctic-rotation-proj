@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #
-#SBATCH --job-name=megahit.sh.isolate
+#SBATCH --job-name=megahit-isolate.sh.isolate
 #SBATCH -t 4:00:00
 #SBATCH --mem=32768
 #SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/megahit.sh.isolate.out

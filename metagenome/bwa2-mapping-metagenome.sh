@@ -23,7 +23,7 @@ samtools faidx /home/jemizzi/rotation-project/mapping/metagenome/bwa2-samtools-o
 samtools import /home/jemizzi/rotation-project/mapping/metagenome/bwa2-samtools-output/contigs.fa.fai /home/jemizzi/rotation-project/mapping/metagenome/bwa2-samtools-output/metagenome-mapped.sam /home/jemizzi/rotation-project/mapping/metagenome/bwa2-samtools-output/metagenome-mapped.bam
 
 # sort the bam file
-samtools sort /home/jemizzi/rotation-project/mapping/metagenome/bwa2-samtools-output/isolate-mapped.bam > /home/jemizzi/rotation-project/mapping/metagenome/bwa2-samtools-output/metagenome-mapped.sorted.bam
+samtools sort /home/jemizzi/rotation-project/mapping/metagenome/bwa2-samtools-output/metagenome-mapped.bam > /home/jemizzi/rotation-project/mapping/metagenome/bwa2-samtools-output/metagenome-mapped.sorted.bam
 
 # index the sorted bam file
 samtools index /home/jemizzi/rotation-project/mapping/metagenome/bwa2-samtools-output/metagenome-mapped.sorted.bam

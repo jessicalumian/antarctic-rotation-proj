@@ -16,7 +16,7 @@ kaiju -t /home/jemizzi/rotation-project/databases/kaiju-database/nodes.dmp -f /h
 addTaxonNames -t /home/jemizzi/rotation-project/databases/kaiju-database/nodes.dmp -n /home/jemizzi/rotation-project/databases/kaiju-database/names.dmp -i /home/jemizzi/rotation-project/annotations/kaiju/isolate/kaiju.isolate.out -o /home/jemizzi/rotation-project/annotations/kaiju/isolate/kaiju.isolate.out.names
 
 # does classification for genus leve, can change -r parameter for different levels
-kaijuReport -t /home/jemizzi/rotation-project/databases/kaiju-database/nodes.dmp -n /home/jemizzi/rotation-project/databases/kaiju-database/names.dmp -i /home/jemizzi/rotation-project/annotations/kaiju/isolate/kaiju.isolate.out -r genus -o /home/jemizzi/rotation-project/annotations/kaiju/metagenome/kaiju.isolate.out.summary
+kaijuReport -t /home/jemizzi/rotation-project/databases/kaiju-database/nodes.dmp -n /home/jemizzi/rotation-project/databases/kaiju-database/names.dmp -i /home/jemizzi/rotation-project/annotations/kaiju/isolate/kaiju.isolate.out -r genus -o /home/jemizzi/rotation-project/annotations/kaiju/isolate/kaiju.isolate.out.summary
 
 # make output into format for Krona html visualization software
 # maybe use different input file? currently using one from first step, but maybe need more classification information

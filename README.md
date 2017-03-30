@@ -23,4 +23,4 @@ Workflow:
 
 ## Anvi'o
 
-This is a mysterious work in progress.
+This is a mysterious work in progress. This script is being tweaked to generate files: [anvio-prep-working.sh](https://github.com/jessicamizzi/antarctic-rotation-proj/blob/master/anvio-prep-working.sh)

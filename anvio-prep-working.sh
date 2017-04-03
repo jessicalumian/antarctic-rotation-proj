@@ -90,3 +90,7 @@ anvi-profile -i /home/jemizzi/rotation-project/visualization-anvio/combined/isol
 cp /home/jemizzi/rotation-project/visualization-anvio/combined/meta-profile/PROFILE.db /home/jemizzi/rotation-project/visualization-anvio/combined/meta-PROFILE.db
 
 cp /home/jemizzi/rotation-project/visualization-anvio/combined/is-profile/PROFILE.db /home/jemizzi/rotation-project/visualization-anvio/combined/is-PROFILE.db
+
+# merge multiple profiles each profile must have AUXILIARY-DATA.h5 file along with PROFILE.db in the same directory
+
+anvi-merge -c /home/jemizzi/rotation-project/visualization-anvio/combined/contigs.db -o /home/jemizzi/rotation-project/visualization-anvio/combined/SAMPLES-MERGED /home/jemizzi/rotation-project/visualization-anvio/combined/*-profile/*.db

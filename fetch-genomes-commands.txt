@@ -1,0 +1,8 @@
+# run these commands to download genes
+
+# from http://blast-tutorial.readthedocs.io/en/latest/ncbi/
+# download gi list from task 4
+
+module load python/2.7.6
+
+python fetch-genomes.py /home/jemizzi/rotation-project/sqr-custom-metagenome/sqr-sequence.gi /home/jemizzi/rotation-project/sqr-custom-metagenome/sqr-database-fastas

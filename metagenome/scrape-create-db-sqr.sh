@@ -13,13 +13,13 @@
 # from http://blast-tutorial.readthedocs.io/en/latest/ncbi/
 # download gi list from task 4
 
-module load python/2.7.6
+module load python/2.7.6 ncbi-blast/2.6.0+
 
 # scrape fastas from NCBI based on GI  list downloaded from gene search (protein database, only bacteria entries in RefSeq for non-redundancy)
 python /home/jemizzi/rotation-project/scripts/fetch-genomes.py /home/jemizzi/rotation-project/gene-search-custom-db/sqr/sqr-refseq-ids.seq /home/jemizzi/rotation-project/gene-search-custom-db/sqr/sqr-database-fastas
 
 # combine all fastas to one file to create database
-cat /home/jemizzi/rotation-project/gene-search-custom-db/sqr/sqr-database-fastas >> /home/jemizzi/rotation-project/gene-search-custom-db/sqr/all-sqr.fa
+cat /home/jemizzi/rotation-project/gene-search-custom-db/sqr/sqr-database-fastas/* >> /home/jemizzi/rotation-project/gene-search-custom-db/sqr/all-sqr.fa
 
 # create custom protein database of sqr genes blastdb
 makeblastdb -in /home/jemizzi/rotation-project/gene-search-custom-db/sqr/all-sqr.fa -dbtype prot -out /home/jemizzi/rotation-project/gene-search-custom-db/sqr/all-sqr.db

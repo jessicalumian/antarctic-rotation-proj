@@ -1,10 +1,10 @@
 #!/bin/bash -l
 #
-#SBATCH --job-name=bin23-scrape-create-db-sqr.sh
+#SBATCH --job-name=bin22-scrape-create-db-sqr.sh
 #SBATCH -t 10:00:00
 #SBATCH --mem=32768
-#SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/bin23-scrape-create-db-sqr.sh.out
-#SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/bin23-scrape-create-db-sqr.sh.err
+#SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/bin22-scrape-create-db-sqr.sh.out
+#SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/bin22-scrape-create-db-sqr.sh.err
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 
@@ -21,5 +21,5 @@ python /home/jemizzi/rotation-project/scripts/fetch-genomes.py /home/jemizzi/rot
 # create custom protein database of sqr genes blastdb
 makeblastdb -in /home/jemizzi/rotation-project/gene-search-custom-db/sqr/all-sqr.fa -dbtype prot -out /home/jemizzi/rotation-project/gene-search-custom-db/sqr/all-sqr.db
 
-# query bin 23 against sqr database
-blastx -query /home/jemizzi/rotation-project/visualization-anvio/combined/SUMMARY_CONCOCT/bin_by_bin/Bin_23/Bin_23-contigs.fa -db /home/jemizzi/rotation-project/gene-search-custom-db/sqr/all-sqr.db -out /home/jemizzi/rotation-project/gene-search-custom-db/sqr/bin23-sqr-metagenome-hits.out -outfmt 6
+# query bin 22 against sqr database
+blastx -query /home/jemizzi/rotation-project/visualization-anvio/combined/SUMMARY_CONCOCT/bin_by_bin/Bin_22/Bin_22-contigs.fa -db /home/jemizzi/rotation-project/gene-search-custom-db/sqr/all-sqr.db -out /home/jemizzi/rotation-project/gene-search-custom-db/sqr/bin22-sqr-metagenome-hits.out -outfmt 6

@@ -10,7 +10,7 @@ Workflow:
 5. View assembly quality with QUAST - [quast-isolate.sh](https://github.com/jessicamizzi/antarctic-rotation-proj/blob/master/isolate/quast-isolate.sh)
 6. Map reads back to assembly for coverage information using samtools - [bwa2-mapping-isolate.sh](https://github.com/jessicamizzi/antarctic-rotation-proj/blob/master/isolate/bwa2-mapping-isolate.sh)
 7. Taxonomic classification, using Kaiju with Krona output - [kaiju-isolate.sh](https://github.com/jessicamizzi/antarctic-rotation-proj/blob/master/isolate/kaiju-isolate.sh)
-8. Anvi'oh-no-what-am-I-doing
+8. Anvi'o
 
 ## For metagenome sample:
 
@@ -19,7 +19,7 @@ Workflow:
 5. View assembly quality with QUAST - [quast-metagenome.sh](https://github.com/jessicamizzi/antarctic-rotation-proj/blob/master/metagenome/quast-metagenome.sh)
 6. Map reads back to assembly for coverage information using samtools - [bwa2-mapping-metagenome.sh](https://github.com/jessicamizzi/antarctic-rotation-proj/blob/master/metagenome/bwa2-mapping-metagenome.sh)
 7. Taxonomic classification, using Kaiju with Krona output - [kaiju-metagenome.sh](https://github.com/jessicamizzi/antarctic-rotation-proj/blob/master/metagenome/kaiju-metagenome.sh)
-8. Anvi'oh-no-what-am-I-doing
+8. Anvi'o
 
 ## Anvi'o
 

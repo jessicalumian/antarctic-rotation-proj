@@ -10,26 +10,40 @@ ln -fs /home/jemizzi/rotation-project/raw-data/metagenomic/paired-qc-filtered-me
 ln -fs /home/jemizzi/rotation-project/assembly-combined-datasets/combined-assembly-megahit/final.contigs.fa ~/rotation-project/anvio-DIBSI
 
 # reformat assembly
-anvi-script-reformat-fasta /home/jemizzi/rotation-project/assembly-combined-datasets/combined-assembly-megahit/final.contigs.fa -o ~/rotation-project/assembly-combined-datasets/anvio-contigs.fa --min-len 2000 --simplify-names --report ~/rotation-project/assembly-combined-datasets/name_conversions.txt
+anvi-script-reformat-fasta /home/jemizzi/rotation-project/assembly-combined-datasets/combined-assembly-megahit/final.contigs.fa -o ~/rotation-project/anvio-DIBSI/anvio-contigs.fa --min-len 2000 --simplify-names --report ~/rotation-project/anvio-DIBSI/name_conversions.txt
 
 # bowtie for mapping - build index for bowtie2
-bowtie2-build ~/rotation-project/assembly-combined-datasets/anvio-contigs.fa ~/rotation-project/assembly-combined-datasets/anvio-contigs
+bowtie2-build ~/rotation-project/anvio-DIBSI/anvio-contigs.fa ~/rotation-project/anvio-DIBSI/anvio-contigs
+
+# de interleave reads for bowtie
+module unload python3
+module load python/2.7.6 khmer/2.0
+for filename in /home/jemizzi/rotation-project/anvio-DIBSI/*.fastq
+do
+     # first, make the base by removing .fastq
+     base=$(basename $filename .fastq)
+     echo $base
+     (split-paired-reads.py /home/jemizzi/rotation-project/anvio-DIBSI/${base}.fastq -1 /home/jemizzi/rotation-project/anvio-DIBSI/${base}_R1_.fastq -2 /home/jemizzi/rotation-project/anvio-DIBSI/${base}_R2_.fastq )
+done
 
 # map raw reads to assembly
-for file in ~/rotation-project/assembly-combined-datasets/*.fastq
+for file in ~/rotation-project/anvio-DIBSI/*.fastq
 do
-    bowtie2 --threads 8 -x ~/rotation-project/assembly-combined-datasets/anvio-contigs --interleaved $file -S ${file/.fastq/}.sam
-    samtools view -U 4 -bS ${file/.fastq/}.sam > ${file/.fastq/}.bam
+    base1=$(basename $file .fastq)
+    base2=${base/_R1_/_R2_}
+    trunk=$(basename $file _?_.fastq)
+    bowtie2 --threads 8 -x ~/rotation-project/anvio-DIBSI/anvio-contigs -1 $base1 -2 $base2 -S ${trunk/.fastq/}.sam
+    samtools view -U 4 -bS ${trunk/.fastq/}.sam > ${trunk/.fastq/}.bam
 done
 
 # convert to anvio readable format
-for file in ~/rotation-project/assembly-combined-datasets/*.bam
+for file in ~/rotation-project/anvio-DIBSI/*.bam
 do
     anvi-init-bam ${file} -o ${file/.bam/}.anvio.bam
 done
 
 # generate anvio contigs database
-anvi-gen-contigs-database -f ~/rotation-project/assembly-combined-datasets/anvio-contigs.fa -o ~/rotation-project/assembly-combined-datasets/anvio-contigs.db
+anvi-gen-contigs-database -f ~/rotation-project/anvio-DIBSI/anvio-contigs.fa -o ~/rotation-project/anvio-DIBSI/anvio-contigs.db
 
 # hmm search and ID single copy genes
 anvi-run-hmms -c ~/rotation-project/assembly-combined-datasets/anvio-contigs.db --num-threads 28

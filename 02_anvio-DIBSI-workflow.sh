@@ -5,12 +5,12 @@
 module load prodigal/2.6.3 centrifuge/1.0.3-beta python3/3.6.0 bowtie2/2.2.5 samtools/1.3.1
 
 # link raw reads, define assembly reads for reference in script
-ln -fs /home/jemizzi/rotation-project/quality-control/isolate/interleave-output-files-trimmed/isolate-all-reads.fastq ~/rotation-project/assembly-combined-datasets
-ln -fs /home/jemizzi/rotation-project/raw-data/metagenomic/paired-qc-filtered-megan/10.4_ABC_4.cat.ereps.afu.fastq ~/rotation-project/assembly-combined-datasets
-COASSEMBLY=`/home/jemizzi/rotation-project/assembly-combined-datasets/combined-assembly-megahit/contigs.fa`
+ln -fs /home/jemizzi/rotation-project/quality-control/isolate/interleave-output-files-trimmed/isolate-all-reads.fastq ~/rotation-project/anvio-DIBSI
+ln -fs /home/jemizzi/rotation-project/raw-data/metagenomic/paired-qc-filtered-megan/10.4_ABC_4.cat.ereps.afu.fastq ~/rotation-project/anvio-DIBSI
+ln -fs /home/jemizzi/rotation-project/assembly-combined-datasets/combined-assembly-megahit/final.contigs.fa ~/rotation-project/anvio-DIBSI
 
 # reformat assembly
-anvi-script-reformat-fasta $COASSEMBLY -o ~/rotation-project/assembly-combined-datasets/anvio-contigs.fa --min-len 2000 --simplify-names --report ~/rotation-project/assembly-combined-datasets/name_conversions.txt
+anvi-script-reformat-fasta /home/jemizzi/rotation-project/assembly-combined-datasets/combined-assembly-megahit/final.contigs.fa -o ~/rotation-project/assembly-combined-datasets/anvio-contigs.fa --min-len 2000 --simplify-names --report ~/rotation-project/assembly-combined-datasets/name_conversions.txt
 
 # bowtie for mapping - build index for bowtie2
 bowtie2-build ~/rotation-project/assembly-combined-datasets/anvio-contigs.fa ~/rotation-project/assembly-combined-datasets/anvio-contigs

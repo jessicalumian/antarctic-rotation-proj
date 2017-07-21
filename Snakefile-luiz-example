@@ -1,0 +1,41 @@
+rule all:
+    input:
+      'outputs/blast/SQR/1',
+      'outputs/blast/SQR/2'
+
+#expand('outputs/blast/{gene}/{bin}',
+#        gene=['SQR', 'PSBA'],
+#        bins=range(10))
+
+rule download_reads:
+    output: 'inputs/raw_reads.fq'
+    shell: '''
+        mkdir -p inputs
+        touch {output}
+    '''
+
+rule download_gene:
+    output: 'inputs/SQR'
+    shell: '''
+        mkdir -p inputs
+        touch {output}
+    '''
+
+rule create_bins:
+    input: 'inputs/raw_reads.fq'
+    output: 'outputs/bins/{bin}'
+    shell: '''
+        mkdir -p outputs/bins
+        touch {output}
+    '''
+
+rule blast_gene:
+    output: 'outputs/blast/{gene}/{bin}'
+    input:
+      bin='outputs/bins/{bin}',
+      gene='inputs/{gene}'
+    params:
+        gene="{gene}"
+    shell: """
+        blast -options {input.bin} {input.gene} > {output}
+    """

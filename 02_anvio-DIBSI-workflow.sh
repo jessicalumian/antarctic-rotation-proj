@@ -27,16 +27,17 @@ do
 done
 
 # map raw reads to assembly
-for file in ~/rotation-project/anvio-DIBSI/*.fastq
-do
-    base1=$(basename $file .fastq)
-    base2=${base/_R1_/_R2_}
-    trunk=$(basename $file _?_.fastq)
-    bowtie2 --threads 8 -x ~/rotation-project/anvio-DIBSI/anvio-contigs -1 $base1 -2 $base2 -S ${trunk/.fastq/}.sam
-    samtools view -U 4 -bS ${trunk/.fastq/}.sam > ${trunk/.fastq/}.bam
-done
+bowtie2 --threads 8 -x ~/rotation-project/anvio-DIBSI/anvio-contigs -1 /home/jemizzi/rotation-project/anvio-DIBSI/10.4_ABC_4.cat.ereps.afu_R1_.fastq -2 /home/jemizzi/rotation-project/anvio-DIBSI/10.4_ABC_4.cat.ereps.afu_R2_.fastq -S 10.4_ABC_4.cat.ereps.afu.sam
+samtools view -U 4 -bS 10.4_ABC_4.cat.ereps.afu.sam > 10.4_ABC_4.cat.ereps.afu.bam
+
+
+bowtie2 --threads 8 -x ~/rotation-project/anvio-DIBSI/anvio-contigs -1 /home/jemizzi/rotation-project/anvio-DIBSI/isolate-all-reads_R1_.fastq -2 /home/jemizzi/rotation-project/anvio-DIBSI/isolate-all-reads_R2_.fastq -S isolate-all-reads.afu.sam
+samtools view -U 4 -bS isolate-all-reads.sam > isolate-all-reads.bam
 
 # convert to anvio readable format
+module unload python
+module load python3/3.6.0
+
 for file in ~/rotation-project/anvio-DIBSI/*.bam
 do
     anvi-init-bam ${file} -o ${file/.bam/}.anvio.bam
@@ -46,16 +47,16 @@ done
 anvi-gen-contigs-database -f ~/rotation-project/anvio-DIBSI/anvio-contigs.fa -o ~/rotation-project/anvio-DIBSI/anvio-contigs.db
 
 # hmm search and ID single copy genes
-anvi-run-hmms -c ~/rotation-project/assembly-combined-datasets/anvio-contigs.db --num-threads 28
+anvi-run-hmms -c ~/rotation-project/anvio-DIBSI/anvio-contigs.db --num-threads 28
 
 # layer coverage information from two samples
-for file in ~/rotation-project/assembly-combined-datasets/*.anvio.bam
+for file in ~/rotation-project/anvio-DIBSI/*.anvio.bam
 do
-    anvi-profile -i $file -c ~/rotation-project/assembly-combined-datasets/anvio-contigs.db -T 28
+    anvi-profile -i $file -c ~/rotation-project/anvio-DIBSI/anvio-contigs.db -T 28
 done
 
 # merge profiles and bin with CONCOCT
-anvi-merge ~/rotation-project/assembly-combined-datasets/*ANVIO_PROFILE/PROFILE.db -o ~/rotation-project/assembly-combined-datasets/MERGED-SAMPLES -c ~/rotation-project/assembly-combined-datasets/anvio-contigs.db --enforce-hierarchical-clustering
+anvi-merge ~/rotation-project/anvio-DIBSI/*ANVIO_PROFILE/PROFILE.db -o ~/rotation-project/anvio-DIBSI/MERGED-SAMPLES -c ~/rotation-project/anvio-DIBSI/anvio-contigs.db --enforce-hierarchical-clustering
 
 # visualize data! (may need to scp and run from local comp)
 anvi-interactive -p MERGED-SAMPLES/PROFILE.db -c anvio-contigs.db

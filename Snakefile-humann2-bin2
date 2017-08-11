@@ -1,0 +1,47 @@
+rule db-downloads:
+    output: 
+        '/home/jemizzi/rotation-project/databases/humann2-database/chocophlan'
+    	'/home/jemizzi/rotation-project/databases/humann2-database/uniref'
+    	'/home/jemizzi/rotation-project/databases/humann2-database/utility_mapping'
+    shell: '''
+	module load bio
+	humann2_databases --download chocophlan full /home/jemizzi/rotation-project/databases/humann2-database/
+	humann2_databases --download uniref uniref50_diamond /home/jemizzi/rotation-project/databases/humann2-database/
+	humann2_databases --download utility_mapping full /home/jemizzi/rotation-project/databases/humann2-database/
+	'''
+
+rule genefam-gen:
+    input:
+	'/home/jemizzi/rotation-project/visualization-anvio/combined/SUMMARY_CONCOCT/bin_by_bin/Bin_2/Bin_2-contigs.fa'
+    output:
+	'/home/jemizzi/rotation-project/annotations/humann2'
+    shell: '''
+	module load python usearch samtools perlbrew bowtie2 metaphlan/2.0
+	humann2 --input {input} --nucleotide-database /home/jemizzi/rotation-project/databases/humann2-database/chocophlan --protein-database /home/jemizzi/rotation-project/databases/humann2-database/uniref --output {output}
+
+rule cpm-convert:
+    input:
+	'/home/jemizzi/rotation-project/annotations/humann2/Gene_Families/cat_gene_families'
+    output:
+	'/home/jemizzi/rotation-project/annotations/humann2/Gene_Families/cat_gene_families_cpm'
+    shell: '''
+	module load bio
+	humann2_renorm_table --input {input} --units "cpm" --output {output}
+
+rule group-genes:
+    input: 
+	'/home/jemizzi/rotation-project/annotations/humann2/Gene_Families'
+    output: 
+	'/home/jemizzi/rotation-project/annotations/humann2/Gene_Families/cat_gene_families'
+    shell: '''
+	module load python usearch samtools perlbrew bowtie2 metaphlan/2.0
+	humann2_join_tables --input {input} --output {output}
+
+rule map-path:
+    input:
+	'/home/jemizzi/rotation-project/annotations/humann2/Gene_Families/cat_gene_families_cpm'
+    output:
+	'/home/jemizzi/rotation-project/annotations/humann2/Gene_Families/cat_gene_families_cpm_uniref50_ko.txt'
+    shell: '''
+	module load bio
+	humann2_regroup_table --input {input} --groups uniref50_ko --output {output}

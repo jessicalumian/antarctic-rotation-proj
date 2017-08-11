@@ -12,15 +12,15 @@ set -e
 
 module load python usearch samtools perlbrew bowtie2 metaphlan/2.0 bio
 
+# download databases and utility mapping (KEGG legacy mapping)
+
+humann2_databases --download chocophlan full /home/jemizzi/rotation-project/databases/humann2-database/
+humann2_databases --download uniref uniref50_diamond /home/jemizzi/rotation-project/databases/humann2-database/
+humann2_databases --download utility_mapping full /home/jemizzi/rotation-project/databases/humann2-database/
+
 # set input/output and database locations
 
 humann2 --input /home/jemizzi/rotation-project/visualization-anvio/combined/SUMMARY_CONCOCT/bin_by_bin/Bin_2/Bin_2-contigs.fa --nucleotide-database /home/jemizzi/rotation-project/databases/humann2-database/chocophlan --protein-database /home/jemizzi/rotation-project/databases/humann2-database/uniref --output /home/jemizzi/rotation-project/annotations/humann2
-
-# download databases and utility mapping (KEGG legacy mapping)
-
-humann2_databases --download chocophlan full /home/jemizzi/rotation-project/databases/humann2-database/chocophlan
-humann2_databases --download uniref uniref50_diamond /home/jemizzi/rotation-project/databases/humann2-database/uniref
-humann2_databases --download utility_mapping full /home/jemizzi/rotation-project/databases/humann2-database/utility_mapping
 
 # convert output to CPM
 

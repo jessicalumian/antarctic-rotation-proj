@@ -1,10 +1,10 @@
 #!/bin/bash -l
 #
-#SBATCH --job-name=humann2-bin2.sh
+#SBATCH --job-name=humann2-bin2-1_download_dbs.sh
 #SBATCH -t 10:00:00
 #SBATCH --mem=57344
-#SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/humann2-bin2.sh.out
-#SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/humann2-bin2.sh.err
+#SBATCH -o /home/jemizzi/rotation-project/scripts/error-output-reports/humann2-bin2-1_download_dbs.sh.out
+#SBATCH -e /home/jemizzi/rotation-project/scripts/error-output-reports/humann2-bin2-1_download_dbs.sh.err
 #SBATCH --mail-user=jemizzi@ucdavis.edu
 #SBATCH --mail-type=ALL
 

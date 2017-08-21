@@ -21,9 +21,9 @@ rule genefam-gen:
 
 rule cpm-convert:
     input:
-	'/home/jemizzi/rotation-project/annotations/humann2/Gene_Families/cat_gene_families'
+	'/home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies.tsv'
     output:
-	'/home/jemizzi/rotation-project/annotations/humann2/Gene_Families/cat_gene_families_cpm'
+	'/home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies_cpm.tsv'
     shell: '''
 	module load bio
 	humann2_renorm_table --input {input} --units "cpm" --output {output}

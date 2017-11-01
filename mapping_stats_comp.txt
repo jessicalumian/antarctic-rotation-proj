@@ -120,3 +120,21 @@ bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/as
 # Mapping concatenated reads
 # Mapping raw isolate reads
 bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/all_reads_isolate_mat.fastq -S coassembly_is_and_mat_sample.sam
+
+## RESULTS
+
+24748654 reads; of these:
+  24748654 (100.00%) were paired; of these:
+    16215600 (65.52%) aligned concordantly 0 times
+    8374916 (33.84%) aligned concordantly exactly 1 time
+    158138 (0.64%) aligned concordantly >1 times
+    ----
+    16215600 pairs aligned concordantly 0 times; of these:
+      5025531 (30.99%) aligned discordantly 1 time
+    ----
+    11190069 pairs aligned 0 times concordantly or discordantly; of these:
+      22380138 mates make up the pairs; of these:
+        18231426 (81.46%) aligned 0 times
+        3640960 (16.27%) aligned exactly 1 time
+        507752 (2.27%) aligned >1 times
+63.17% overall alignment rate

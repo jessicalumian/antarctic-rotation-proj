@@ -84,4 +84,4 @@ bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/as
 
 # Mapping concatenated reads
 # Mapping raw isolate reads
-bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/10.4_ABC_4.cat.ereps.afu.fastq,~/rotation-project/assembly-combined-datasets/isolate-all-reads.fastq -S coassembly_is_and_mat_sample.sam
+bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/all_reads_isolate_mat.fastq -S coassembly_is_and_mat_sample.sam

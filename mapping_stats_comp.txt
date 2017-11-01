@@ -76,4 +76,12 @@ module load python/2.7.6
 
 bowtie2-build /home/jemizzi/rotation-project/assembly-combined-datasets/combined-assembly-megahit/final.contigs.fa bowtie-format-contigs
 
-bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/10.4_ABC_4.cat.ereps.afu.fastq,~/rotation-project/assembly-combined-datasets/isolate-all-reads.fastq -S coassembly_sample.sam
+# Mapping raw isolate reads
+bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/isolate-all-reads.fastq -S coassembly_isolate_sample.sam
+
+# Mapping raw mat reads
+bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/10.4_ABC_4.cat.ereps.afu.fastq -S coassembly_culutre_ sample.sam
+
+# Mapping concatenated reads
+# Mapping raw isolate reads
+bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/10.4_ABC_4.cat.ereps.afu.fastq,~/rotation-project/assembly-combined-datasets/isolate-all-reads.fastq -S coassembly_is_and_mat_sample.sam

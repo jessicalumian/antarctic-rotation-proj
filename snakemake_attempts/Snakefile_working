@@ -1,0 +1,11 @@
+rule all:
+    output:
+        '/home/jemizzi/rotation-project/databases/humann2-database/chocophlan',
+        '/home/jemizzi/rotation-project/databases/humann2-database/uniref',
+        '/home/jemizzi/rotation-project/databases/humann2-database/utility_mapping'
+    shell: '''
+        module load bio
+        humann2_databases --download chocophlan full /home/jemizzi/rotation-project/databases/humann2-database/
+        humann2_databases --download uniref uniref50_diamond /home/jemizzi/rotation-project/databases/humann2-database/
+        humann2_databases --download utility_mapping full /home/jemizzi/rotation-project/databases/humann2-database/
+        '''

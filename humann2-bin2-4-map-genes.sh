@@ -14,4 +14,4 @@ module load bio
 
 # map gene family CPMs to pathways
 
-humann2_regroup_table --input /home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies_cpm.tsv --groups uniref50_ko --output /home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies_cpm_uniref50_ko.txt
+humann2_regroup_table --input /home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies.tsv --groups uniref50_ko --output /home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies_uniref50_ko.tsv

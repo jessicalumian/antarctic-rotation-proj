@@ -1,0 +1,140 @@
+### METAGENOMIC MAT ASSEMBLY SAMPLE ###
+
+# run from ~/rotation-project/mapping/metagenome/bowtie-mapping-stats
+
+module load bio samtools/1.3.1
+
+module unload python3/3.6.0
+module load python/2.7.6
+
+# build index for bowtie2
+
+bowtie2-build ../bwa2-samtools-output/final.contigs.fa bowtie-format-contigs
+
+bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/raw-data/metagenomic/paired-qc-filtered-megan/10.4_ABC_4.cat.ereps.afu.fastq -S mat_sample.sam
+
+## RESULTS
+
+1955952 reads; of these:
+  1955952 (100.00%) were paired; of these:
+    1955905 (100.00%) aligned concordantly 0 times
+    46 (0.00%) aligned concordantly exactly 1 time
+    1 (0.00%) aligned concordantly >1 times
+    ----
+    1955905 pairs aligned concordantly 0 times; of these:
+      883469 (45.17%) aligned discordantly 1 time
+    ----
+    1072436 pairs aligned 0 times concordantly or discordantly; of these:
+      2144872 mates make up the pairs; of these:
+        1274049 (59.40%) aligned 0 times
+        763241 (35.58%) aligned exactly 1 time
+        107582 (5.02%) aligned >1 times
+67.43% overall alignment rate
+
+
+### ISOLATE ASSEMBLY SAMPLE ###
+
+# run from ~/rotation-project/mapping/isolate/bowtie-mapping-stats
+
+module load bio samtools/1.3.1
+
+module unload python3/3.6.0
+module load python/2.7.6
+
+bowtie2-build ../bwa2-samtools-output/final.contigs.fa bowtie-format-contigs
+
+bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/quality-control/isolate/interleave-output-files-trimmed/isolate-all-reads.fastq -S isolate_sample.sam
+
+## RESULTS
+
+22792702 reads; of these:
+  22792702 (100.00%) were paired; of these:
+    10285438 (45.13%) aligned concordantly 0 times
+    12183174 (53.45%) aligned concordantly exactly 1 time
+    324090 (1.42%) aligned concordantly >1 times
+    ----
+    10285438 pairs aligned concordantly 0 times; of these:
+      7072063 (68.76%) aligned discordantly 1 time
+    ----
+    3213375 pairs aligned 0 times concordantly or discordantly; of these:
+      6426750 mates make up the pairs; of these:
+        3250900 (50.58%) aligned 0 times
+        1685668 (26.23%) aligned exactly 1 time
+        1490182 (23.19%) aligned >1 times
+92.87% overall alignment rate
+
+### COASSEMBLY SAMPLE ###
+
+# run from ~/rotation-project/mapping/coassembly/bowtie-mapping-stats
+
+module load bio samtools/1.3.1
+
+module unload python3/3.6.0
+module load python/2.7.6
+
+# build index for bowtie2
+
+bowtie2-build /home/jemizzi/rotation-project/assembly-combined-datasets/combined-assembly-megahit/final.contigs.fa bowtie-format-contigs
+
+# Mapping raw isolate reads
+bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/isolate-all-reads.fastq -S coassembly_isolate_sample.sam
+
+## RESULTS
+22792702 reads; of these:
+  22792702 (100.00%) were paired; of these:
+    14259660 (62.56%) aligned concordantly 0 times
+    8374904 (36.74%) aligned concordantly exactly 1 time
+    158138 (0.69%) aligned concordantly >1 times
+    ----
+    14259660 pairs aligned concordantly 0 times; of these:
+      4745545 (33.28%) aligned discordantly 1 time
+    ----
+    9514115 pairs aligned 0 times concordantly or discordantly; of these:
+      19028230 mates make up the pairs; of these:
+        15697721 (82.50%) aligned 0 times
+        2827961 (14.86%) aligned exactly 1 time
+        502548 (2.64%) aligned >1 times
+65.56% overall alignment rate
+
+# Mapping raw mat reads
+bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/10.4_ABC_4.cat.ereps.afu.fastq -S coassembly_mat_sample.sam
+
+## RESULTS
+
+1955952 reads; of these:
+  1955952 (100.00%) were paired; of these:
+    1955940 (100.00%) aligned concordantly 0 times
+    12 (0.00%) aligned concordantly exactly 1 time
+    0 (0.00%) aligned concordantly >1 times
+    ----
+    1955940 pairs aligned concordantly 0 times; of these:
+      279986 (14.31%) aligned discordantly 1 time
+    ----
+    1675954 pairs aligned 0 times concordantly or discordantly; of these:
+      3351908 mates make up the pairs; of these:
+        2533705 (75.59%) aligned 0 times
+        812999 (24.25%) aligned exactly 1 time
+        5204 (0.16%) aligned >1 times
+35.23% overall alignment rate
+
+# Mapping concatenated reads
+# Mapping raw isolate reads
+bowtie2 --threads 8 -x bowtie-format-contigs --interleaved ~/rotation-project/assembly-combined-datasets/all_reads_isolate_mat.fastq -S coassembly_is_and_mat_sample.sam
+
+## RESULTS
+
+24748654 reads; of these:
+  24748654 (100.00%) were paired; of these:
+    16215600 (65.52%) aligned concordantly 0 times
+    8374916 (33.84%) aligned concordantly exactly 1 time
+    158138 (0.64%) aligned concordantly >1 times
+    ----
+    16215600 pairs aligned concordantly 0 times; of these:
+      5025531 (30.99%) aligned discordantly 1 time
+    ----
+    11190069 pairs aligned 0 times concordantly or discordantly; of these:
+      22380138 mates make up the pairs; of these:
+        18231426 (81.46%) aligned 0 times
+        3640960 (16.27%) aligned exactly 1 time
+        507752 (2.27%) aligned >1 times
+63.17% overall alignment rate

@@ -1,0 +1,48 @@
+# fix rule all input value
+rule all:
+    input:
+        '/home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies_cpm_uniref50_ko.txt'
+
+rule db_download:
+    output:
+        '/home/jemizzi/rotation-project/databases/humann2-database/chocophlan',
+        '/home/jemizzi/rotation-project/databases/humann2-database/uniref',
+        '/home/jemizzi/rotation-project/databases/humann2-database/utility_mapping'
+    shell: '''
+        module load bio
+        humann2_databases --download chocophlan full /home/jemizzi/rotation-project/databases/humann2-database/
+        humann2_databases --download uniref uniref50_diamond /home/jemizzi/rotation-project/databases/humann2-database/
+        humann2_databases --download utility_mapping full /home/jemizzi/rotation-project/databases/humann2-database/
+        '''
+
+rule genefam_gen:
+    input:
+        contigs: '/home/jemizzi/rotation-project/visualization-anvio/combined/SUMMARY_CONCOCT/bin_by_bin/Bin_2/Bin_2-contigs.fa',
+        chocophlan: '/home/jemizzi/rotation-project/databases/humann2-database/chocophlan',
+        uniref: '/home/jemizzi/rotation-project/databases/humann2-database/uniref'
+    output:
+        '/home/jemizzi/rotation-project/annotations/humann2'
+    shell: '''
+        module load python usearch samtools perlbrew bowtie2 metaphlan/2.0
+        humann2 --input {contigs} --nucleotide-database {chocophlan} --protein-database {uniref} --output {output}
+    '''
+
+rule cpm_norm:
+    input:
+        '/home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies.tsv'
+    output:
+        '/home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies_cpm.tsv'
+    shell: '''
+        module load bio
+        humann2_renorm_table --input {input} --units "cpm" --output {output}
+    '''
+
+rule map_genes:
+    input:
+        '/home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies_cpm.tsv'
+    output:
+        '/home/jemizzi/rotation-project/annotations/humann2/Bin_2-contigs_genefamilies_cpm_uniref50_ko.txt'
+    shell: '''
+        module load bio
+        humann2_regroup_table --input {input} --groups uniref50_ko --output {output}
+    '''

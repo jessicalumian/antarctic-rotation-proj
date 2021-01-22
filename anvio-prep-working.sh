@@ -1,4 +1,4 @@
-#!/bin/bash -l
+!/bin/bash -l
 #
 #SBATCH --job-name=anvio-prep-working.sh.both
 #SBATCH -t 40:00:00
